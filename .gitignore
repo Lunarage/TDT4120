@@ -1,3 +1,4 @@
 tags
 **/media/*
 **/__pycache__/*
+*.pdf

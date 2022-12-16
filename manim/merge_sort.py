@@ -284,7 +284,8 @@ class ArrayThing(manim.Scene):
         self.merge(array, first, mid, last)
 
     def construct(self):
-        array = [5, 1, 7, 32, 8, 3, 8, 2, 4, 67]
+        # array = [5, 1, 7, 32, 8, 3, 8, 2, 4, 67]
+        array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
         self.array_group, self.array_squares, self.contents = array_to_vgroup(
             array, "k")

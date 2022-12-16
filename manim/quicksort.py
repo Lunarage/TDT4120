@@ -145,7 +145,9 @@ class Quicksort(manim.Scene):
             self.quicksort(array, q+1, r)
 
     def construct(self):
-        array = [2, 8, 7, 1, 3, 5, 6, 4]
+        # array = [2, 8, 7, 1, 3, 5, 6, 4]
+        # array = [1, 2, 3, 4, 5, 6, 7, 8]
+        array = [8, 7, 6, 5, 4, 3, 2, 1]
 
         self.array_group, self.array_squares, self.array_contents = array_to_vgroup(
             array)

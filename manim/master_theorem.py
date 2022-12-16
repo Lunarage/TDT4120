@@ -9,12 +9,12 @@ class MasterTheorem(Scene):
 
         tree = VGroup()
 
-        root = manim.MathTex(r"c(n)")
+        root = manim.MathTex(r"cf(n)")
         root.to_edge(UP)
         self.add(root)
         tree += root
 
-        leaves_1 = [manim.MathTex(r"c(n/b)"), manim.MathTex(r"c(n/b)")]
+        leaves_1 = [manim.MathTex(r"cf(n/b)"), manim.MathTex(r"cf(n/b)")]
         leaves_1_vg = VGroup(*leaves_1).arrange(buff=3.5)
         leaves_1_vg.next_to(root, DOWN, buff=1.5)
         self.add(leaves_1_vg)
@@ -31,10 +31,10 @@ class MasterTheorem(Scene):
         tree += lines_1_vg
 
         leaves_2 = [
-            manim.MathTex(r"c(n/b^2)"),
-            manim.MathTex(r"c(n/b^2)"),
-            manim.MathTex(r"c(n/b^2)"),
-            manim.MathTex(r"c(n/b^2)"),
+            manim.MathTex(r"cf(n/b^2)"),
+            manim.MathTex(r"cf(n/b^2)"),
+            manim.MathTex(r"cf(n/b^2)"),
+            manim.MathTex(r"cf(n/b^2)"),
         ]
         leaves_2_vg = VGroup(*leaves_2).arrange(buff=1.0)
         leaves_2_vg.next_to(leaves_1_vg, DOWN, buff=1.5)
@@ -83,7 +83,7 @@ class MasterTheorem(Scene):
         )
         height_line.to_edge(LEFT, buff=1.5)
         self.add(height_line)
-        height_label = manim.MathTex(r"log_b(n)").move_to(height_line).add_background_rectangle(color="#333333", opacity=1.0)
+        height_label = manim.MathTex(r"\log_b n").move_to(height_line).add_background_rectangle(color="#333333", opacity=1.0)
         self.add(height_label)
 
         width_line = manim.DoubleArrow(
@@ -92,5 +92,5 @@ class MasterTheorem(Scene):
         )
         width_line.to_edge(DOWN, buff=0.75)
         self.add(width_line)
-        width_label = manim.MathTex(r"a^{log_b(n)}").move_to(width_line).add_background_rectangle(color="#333333", opacity=1.0)
+        width_label = manim.MathTex(r"a^{\log_b n} = n^{\log_b a}").move_to(width_line).add_background_rectangle(color="#333333", opacity=1.0)
         self.add(width_label)

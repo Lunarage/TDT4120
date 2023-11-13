@@ -1,4 +1,5 @@
 tags
+.vscode/**
 **/media/*
 **/__pycache__/*
 *.pdf

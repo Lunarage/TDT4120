@@ -7,6 +7,7 @@ def encoding(node):
     _encoding(node, "", codes)
     return codes
 
+
 def _encoding(node, code, codes):
     if node.left_child is None and node.right_child is None:
         codes[node.character] = code

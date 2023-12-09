@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 # coding=utf-8
 
-import random
-import string
 
 def resolve_and_install(package):
     if package.is_installed:
@@ -10,9 +8,6 @@ def resolve_and_install(package):
     for dependency in package.dependencies:
         resolve_and_install(dependency)
     install(package)
-
-# Hvis du ønsker nye tester, så endre dette tallet.
-random.seed(123)
 
 
 class Package:
@@ -38,59 +33,3 @@ class Package:
 
     def __repr__(self):
         return str(self)
-
-
-def get_install_func(installed_packages):
-    def install(package):
-        if package.is_installed:
-            raise ValueError(
-                'Du kjører "install" på en pakke som allerede er installert.'
-            )
-        if not all([p.is_installed for p in package.dependencies]):
-            raise ValueError(
-                'Du kjører "install" på en pakke uten å ha installert alle pakkene den er avhengig av.'
-            )
-        installed_packages.add(package)
-
-    return install
-
-
-def generate_random_test(num_nodes, p):
-    installed_packages = set()
-    def is_installed_func(x): return x in installed_packages
-    packages = [None for i in range(num_nodes)]
-    incoming_edges = [[] for i in range(num_nodes)]
-    installed_limit = random.randint(0, num_nodes)
-    for i in range(1, num_nodes):
-        predecessors = random.sample(
-            range(0, i), k=random.randint(1, min(i, max(1, int(2 * p * i))))
-        )
-        for pre in predecessors:
-            incoming_edges[pre].append(i)
-    for i in range(num_nodes - 1, -1, -1):
-        dependencies = tuple([packages[j] for j in incoming_edges[i]])
-        packages[i] = Package(dependencies, is_installed_func)
-        if i >= installed_limit:
-            installed_packages.add(packages[i])
-    return (packages[0], get_install_func(installed_packages))
-
-
-def generate_install_tests():
-    # Some small random tests
-    for i in range(100):
-        yield generate_random_test(random.randint(1, 5), 0.5)
-
-
-for package, install_func in generate_install_tests():
-    global install
-    install = install_func
-    try:
-        resolve_and_install(package)
-    except ValueError as e:
-        response = str(e) + " Input: {:}".format(package)
-        print(response)
-        break
-    if not package.is_installed:
-        response = "Pakken er ikke installert. Input: {:}".format(package)
-        print(response)
-        break

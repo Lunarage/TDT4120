@@ -3,6 +3,7 @@
 
 import heapq
 
+
 def build_decision_tree(decisions):
     nodes = []
     for decision in decisions:
@@ -39,6 +40,7 @@ def encoding(node):
         stack.append((node.right_child, code + "1"))
 
     return codes
+
 
 class Node:
     def __init__(self):

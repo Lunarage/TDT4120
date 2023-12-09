@@ -1,6 +1,7 @@
 length = 7
 cost = 2
-prices = [0,1,4,3,6,8,5,9]
+prices = [0, 1, 4, 3, 6, 8, 5, 9]
+
 
 def cut_rod(length, cost, prices):
     mem = [0]*(length+1)
@@ -15,5 +16,6 @@ def cut_rod(length, cost, prices):
 
     print(mem)
     return mem[length]
+
 
 print(cut_rod(length, cost, prices))
